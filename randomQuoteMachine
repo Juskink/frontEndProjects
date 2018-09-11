@@ -1,0 +1,169 @@
+// ----------------------------------------------------HTML -----------------------------------------------
+<div id="root">
+  
+</div>
+
+// -----------------------------------------------------CSS ------------------------------------------------
+
+
+@import url("https://fonts.googleapis.com/css?family=Cabin+Sketch");
+
+@import url("https://fonts.googleapis.com/css?family=Special+Elite");
+
+$main-color: #FFA726;
+$secondary-color: #757575;
+
+body{
+  background-image: url("http://kb4images.com//images/cool-background-pictures/37263721-cool-background-pictures.jpg");
+}
+
+#quote-box{
+  padding: 15% 20%;
+  margin: 0 auto 5% auto;
+  
+}
+
+
+
+h1 {
+  color:$main-color ;
+  line-height: 1.2em;
+  margin: 0 auto 5% auto;
+  /*background-color: rgba(89, 80, 80, 0.5);*/
+  font-family: 'Special Elite', cursive;
+  /*font-family: 'Tangerine', serif;*/
+  
+}
+h2 {
+  color: #fff;
+  margin: 0 auto 5% auto;
+  font-family: "Cabin Sketch", cursive;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    border-radius: 5%;
+    padding: 1rem 2rem;
+    margin: 0 20% 5% 0;
+    text-decoration: none;
+    background: $secondary-color;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: $secondary-color;
+    color:$main-color;
+    box-shadow: 0 0 0 2pt $main-color;
+    outline: 2px solid $main-color;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+a {
+  display: inline-block;
+  color: #fff;
+  border: none;
+  color: white;
+  padding: 1em 1em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.fab {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fab:hover {
+    color: $main-color ;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+    border-radius: 50%;
+    }
+    
+  //----------------------------------------------------- JAVASCRIPT --------------------------------------------------------
+ //maybe child component for the tweet of the random quote
+class Random extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      quoteArr : [],
+      randomIndex: Math.round(Math.random()*11),
+    }
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(){
+    this.setState({
+      randomIndex: Math.round(Math.random()*11),
+    });
+  }
+    render() {
+    // start with the quotes
+    const QUOTES = [
+      "I was elected by the women of Ireland, who instead of rocking the cradle, rocked the system.",
+      "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.",
+      "I spent a lot of money on booze, birds and fast cars. The rest I just squandered.",
+      "Strategy? ‘It isn’t too complex really, just A to B as fasht as you can go. Close the eyes and pull like a dog",
+      "That was excellently observed’, say I, when I read a passage in an author, where his opinion agrees with mine. When we differ, there I pronounce him to be mistaken.",
+      "To live is the rarest thing in the world. Most people exist, that is all.",
+      "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
+      "Service to others is the rent you pay for your room here on earth.",
+      "If my mind can conceive it, and my heart can believe it—then I can achieve it.",
+      "We are what we repeatedly do. Excellence, then, is not an act, but a habit",
+      "Success is stumbling from failure to failure with no loss of enthusiasm.",
+    ];
+    const AUTHORS = [
+      "Mary Robinson - 1990",
+      "Samuel Beckett - 1954",
+      "George Best - 1982",
+      "Paul Donovan (irish rowing silver medalist) - 2016",
+      "Jonathan Swift - 1700's",
+      "Oscar Wilde - 1900's",
+      "Nelson Mandella",
+      "Muhammed Ali",
+      "Jesse Jackson",
+      "Aristotle",
+      "Winston Churchill",
+    ];
+    /* question for FCC study group!
+     why are these set as constants and also if they are constants how are we able to change them with each render of the component in the ReactDOM model?????*/
+      
+    const RANDOMQUOTE = QUOTES[this.state.randomIndex];
+    const AUTHOR = AUTHORS[this.state.randomIndex];
+    return (
+      <div id="quote-box">
+        <h1 id="text" > <q>{RANDOMQUOTE}</q> </h1>
+        <h2 id="author">{AUTHOR}</h2>
+        <button id="new-quote" onClick={this.handleSubmit}>New Quote</button>
+        <a href="twitter.com/intent/tweet" id = "tweet-quote" className="fab fa-twitter" target="_blank"></a>
+       
+      </div>
+    );
+  }
+}
+ReactDOM.render(
+  <Random/>,
+  document.getElementById('root')
+);
