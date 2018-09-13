@@ -5,7 +5,7 @@
 Html, Css(SCSS preprocessor) & javascript(Babel preprocessor)
 
 ### The external scripts used for React where:
-1//unpkg.com/react/umd/react.development.js
-2//unpkg.com/react-dom/umd/react-dom.development.js
+1 //unpkg.com/react/umd/react.development.js
+2 //unpkg.com/react-dom/umd/react-dom.development.js
 ### The extrnal link used for the FCC test suite is:
 https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js
